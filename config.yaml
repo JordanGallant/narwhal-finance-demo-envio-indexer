@@ -1,0 +1,118 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: narwhal
+networks:
+- id: 10143
+  start_block: 0
+  contracts:
+  - name: Trading
+    address:
+    - 0x17642CE98f4ABfABcBb5e1A5d5825902CC311CEB
+    handler: src/EventHandlers.ts
+    events:
+    - event: Callback(address target, bool resut)
+    - event: CancelOpen(uint256 orderId)
+    - event: Close(uint256 orderId, uint256 closePrice, uint256 _closeMargin, int256 fundingFee, uint256 rolloverFee, uint256 closeFee, uint256 afterFee, uint8 s)
+    - event: ExecRequestClose(uint256 orderId, uint256 index, bool status)
+    - event: ExecRequestOpen(uint256 orderId, bool status)
+    - event: Initialized(uint8 version)
+    - event: Open(uint256 orderId, ((address,uint256,uint256,bool,uint256,uint256,uint256),uint256,uint256) t, uint256 fee)
+    - event: OwnershipTransferStarted(address indexed previousOwner, address indexed newOwner)
+    - event: OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+    - event: RequestClose(uint256 indexed orderId, uint256 indexed index, uint256 _closeMargin, uint256 requstTime)
+    - event: RequestOpen(uint256 indexed orderId, (uint8,(address,uint256,uint256,bool,uint256,uint256,uint256),address,uint256,uint256,uint256) _request)
+    - event: SetContract(address _tradingStorage, address _usdt)
+    - event: SetNativeFeeForKeeper(uint256 _forOpen, uint256 _forClose, uint256 _forCallback, uint256 _gasLimit)
+    - event: SetParams(uint256 _liquidationP, uint256 _spreadReductionP, uint256 _maxMarketTradeOpenTime, uint256 _tradeSwitch)
+    - event: SetReserve(address indexed _receiver, uint256 _rate)
+    - event: TradeClosed(uint256 orderId)
+    - event: UpdateMargin(uint256 orderId, uint256 amount, bool isAdd, uint256 margin, uint256 leverage)
+    - event: UpdateOpenRequest(uint256 orderId, uint256 limitPrice, uint256 tp, uint256 sl)
+    - event: UpdateTPAndSL(uint256 orderId, uint256 tp, uint256 sl)
+  - name: Dice
+    address:
+    - 0xc552a88f2FAB0b7800F2F54141ACe8C4C06f50A2
+    handler: src/EventHandlers.ts
+    events:
+    - event: Dice_Outcome_Event(address indexed playerAddress, uint256 wager, uint256 payout, address tokenAddress, uint32 multiplier, bool isOver, uint256[] diceOutcomes, uint256[] payouts, uint32 numGames, uint64 sequenceNumber)
+    - event: Dice_Play_Event(address indexed playerAddress, uint256 wager, uint32 multiplier, address tokenAddress, bool isOver, uint32 numBets, uint256 stopGain, uint256 stopLoss, uint256 VRFFee)
+    - event: Dice_Refund_Event(address indexed player, uint256 wager, address tokenAddress)
+  - name: CoinFlip
+    address:
+    - 0x5c1C68a709427Cfdb184399304251658f91d4ea8
+    handler: src/EventHandlers.ts
+    events:
+    - event: CoinFlip_Outcome_Event(address indexed playerAddress, uint256 wager, uint256 payout, address tokenAddress, uint8[] coinOutcomes, uint256[] payouts, uint32 numGames, uint64 sequenceNumber)
+    - event: CoinFlip_Play_Event(address indexed playerAddress, uint256 wager, address tokenAddress, bool isHeads, uint32 numBets, uint256 stopGain, uint256 stopLoss, uint256 VRFFee)
+    - event: CoinFlip_Refund_Event(address indexed player, uint256 wager, address tokenAddress)
+  - name: TinderTrading
+    address:
+    - 0x59Cf938d5e2Af9E79685Efaf02ad1A97669B7941
+    handler: src/EventHandlers.ts
+    events:
+    - event: Callback(address target, bool resut)
+    - event: Close(uint256 orderId, uint256 closePrice, uint256 _closeMargin, int256 fundingFee, uint256 rolloverFee, uint256 closeFee, uint256 afterFee, uint8 s)
+    - event: Initialized(uint8 version)
+    - event: Open(uint256 orderId, ((address,uint256,uint256,bool,uint256,uint256,uint256),uint256,uint256) t, uint256 fee)
+    - event: OwnershipTransferStarted(address indexed previousOwner, address indexed newOwner)
+    - event: OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+    - event: Paused(address account)
+    - event: SetFeeHelper(address _feeHelper)
+    - event: SetOracle(address _oracle)
+    - event: SetPairInfo(address _pairInfo)
+    - event: SetParams(uint256 _liquidationP, uint256 _spreadReductionP, uint256 _callbackGasLimit)
+    - event: SetReserve(address indexed _receiver, uint256 _rate)
+    - event: SetStandardToken(address _standardToken)
+    - event: SetVault(address _vault)
+    - event: Unpaused(address account)
+    - event: UpdateKeeper(address indexed _keeper, bool indexed _flag)
+  - name: BankrollAndStaking
+    address:
+    - 0xD6bb56a6DC5c6652B2619d0A715a60DCbc4Fa8c5
+    handler: src/EventHandlers.ts
+    events:
+    - event: BankRoll_Fee_Info(address receiver, uint256 rate)
+    - event: BankRoll_Game_State_Changed(address gameAddress, bool isValid)
+    - event: BankRoll_Max_Payout_Changed(uint256 payout)
+    - event: BankRoll_Stake(address user, address token, uint256 amount, uint256 shares, uint256 userTotalSheres, uint256 tokenShareTotal, uint256 totalPool)
+    - event: BankRoll_Withdraw(address user, address token, uint256 amount, uint256 userAmount, uint256 userTotalSheres, uint256 tokenShareTotal, uint256 totalPool)
+    - event: Bankroll_Token_State_Changed(address tokenAddress, bool isValid)
+    - event: Initialized(uint8 version)
+    - event: OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+  - name: RockPaperScissors
+    address:
+    - 0x55Ccbf961e6785DCC94Ae92fC0be51227897635d
+    handler: src/EventHandlers.ts
+    events:
+    - event: RockPaperScissors_Outcome_Event(address indexed playerAddress, uint256 wager, uint256 payout, address tokenAddress, uint8[] outcomes, uint8[] randomActions, uint256[] payouts, uint32 numGames, uint64 sequenceNumber)
+    - event: RockPaperScissors_Play_Event(address indexed playerAddress, uint256 wager, address tokenAddress, uint8 action, uint32 numBets, uint256 stopGain, uint256 stopLoss, uint256 VRFFee)
+    - event: RockPaperScissors_Refund_Event(address indexed player, uint256 wager, address tokenAddress)
+  - name: Slots
+    address:
+    - 0x5939199FC366f741c5f4981BF343aC5A3ddf748d
+    handler: src/EventHandlers.ts
+    events:
+    - event: Slots_Outcome_Event(address indexed playerAddress, uint256 wager, uint256 payout, address tokenAddress, uint16[] slotIDs, uint256[] multipliers, uint256[] payouts, uint32 numGames, uint64 sequenceNumber)
+    - event: Slots_Play_Event(address indexed playerAddress, uint256 wager, address tokenAddress, uint32 numBets, uint256 stopGain, uint256 stopLoss, uint256 VRFFee)
+    - event: Slots_Refund_Event(address indexed player, uint256 wager, address tokenAddress)
+  - name: Mines
+    address:
+    - 0xcd1368878315C85C340090880D820d1b4d404b7E
+    handler: src/EventHandlers.ts
+    events:
+    #- event: Mines_End_Event(address indexed playerAddress, uint256 wager, uint256 payout, address tokenAddress, uint256 numMines, bool[25] revealedTiles, uint256 multiplier)
+    - event: Mines_Fee_Event(address indexed playerAddress, uint256 VRFFee)
+    - event: Mines_Play_Event(address indexed playerAddress, uint256 wager, address tokenAddress, uint8 numMines, bool isCashout, uint256 VRFFee)
+    - event: Mines_Refund_Event(address indexed player, uint256 wager, address tokenAddress)
+    #- event: Mines_RevealCashout_Event(address indexed playerAddress, uint256 wager, uint256 payout, address tokenAddress, uint256 numMines, bool[25] minesTiles, bool[25] revealedTiles, uint256 multiplier, uint64 sequenceNumber)
+    #- event: Mines_Reveal_Event(address indexed playerAddress, uint256 wager, uint256 payout, address tokenAddress, uint256 numMines, bool[25] minesTiles, bool[25] revealedTiles, uint256 multiplier, uint64 sequenceNumber)
+  - name: Plinko
+    address:
+    - 0x07cb95D208F3d5E0b728fc97b44A189a3374c95C
+    handler: src/EventHandlers.ts
+    events:
+    - event: Plinko_Outcome_Event(address indexed playerAddress, uint256 wager, uint256 payout, address tokenAddress, uint16[] paths, uint8 numRows, uint8 risk, uint256[] payouts, uint32 numGames, uint64 sequenceNumber)
+    - event: Plinko_Play_Event(address indexed playerAddress, uint256 wager, address tokenAddress, uint8 numRows, uint8 risk, uint32 numBets, uint256 stopGain, uint256 stopLoss, uint256 VRFFee)
+    - event: Plinko_Refund_Event(address indexed player, uint256 wager, address tokenAddress)
+unordered_multichain_mode: true
+
+
